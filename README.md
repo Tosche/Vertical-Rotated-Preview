@@ -4,7 +4,7 @@ This is a window plugin for the [Glyphs font editor](http://glyphsapp.com/) that
 It was developed to make vertical writing systems like Mongolian easier.
 After installation, it will add the menu item *Window > Vertical Rotated Preview*.
 
-![Mongol Bichig, ‘Mongolian script’.](Screenshot.png "Vertical Rotated Preview")
+![Mongol Bichig, ‘Mongolian script’.](Screenshot.jpg "Vertical Rotated Preview")
 
 ### Installation
 
