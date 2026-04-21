@@ -112,7 +112,7 @@ class VerticalRotatedPreview(NSView):
 			# Each new line needs its own accumulated offset. Using a constant offset
 			# puts every appended path at the same coordinates.
 			transform = NSAffineTransform.transform()
-			lineOffsetY = lineOffsetY if Glyphs.defaults["com.Tosche.VerticalRotatedPreviewWindow.lineDir"] == 0 else -lineOffsetY
+			lineOffsetY = lineOffsetY if Glyphs.defaults["com.Tosche.VerticalRotatedPreview.lineDir"] == 0 else -lineOffsetY
 			transform.translateXBy_yBy_(0, lineOffsetY)
 			linePath.transformUsingAffineTransform_(transform)
 			fullPath.appendBezierPath_(linePath)
@@ -169,7 +169,7 @@ class VerticalRotatedPreview(NSView):
 	@objc.python_method
 	def updateScale_(self, delta): # for option + scroll wheel zooming
 		try:
-			preferenceKey = "com.Tosche.VerticalRotatedPreviewWindow.scale"
+			preferenceKey = "com.Tosche.VerticalRotatedPreview.scale"
 			currentScale = Glyphs.defaults[preferenceKey]
 			if currentScale is None:
 				currentScale = 0.5
@@ -227,7 +227,7 @@ class VerticalRotatedPreview(NSView):
 			advance = 0
 			lineOffsetY = 0
 			lineHeight = font.selectedFontMaster.ascender - font.selectedFontMaster.descender
-			# linebreak_direction = Glyphs.defaults["com.Tosche.VerticalRotatedPreviewWindow.lineDir"] or 0
+			# linebreak_direction = Glyphs.defaults["com.Tosche.VerticalRotatedPreview.lineDir"] or 0
 			for i, l in enumerate(layers):
 				# print(i, l)
 				if l == 'break' or type(l) == GSControlLayer:
@@ -253,7 +253,7 @@ class VerticalRotatedPreview(NSView):
 				return
 
 			# scale = font.currentTab.scale
-			scale = Glyphs.defaults["com.Tosche.VerticalRotatedPreviewWindow.scale"]
+			scale = Glyphs.defaults["com.Tosche.VerticalRotatedPreview.scale"]
 
 			transform = NSAffineTransform.transform()
 			transform.rotateByDegrees_(-90)
@@ -332,7 +332,7 @@ class TheView(vanilla.VanillaBaseObject):
 
 
 
-class VerticalRotatedPreviewWindow(GeneralPlugin):
+class VerticalRotatedPreview(GeneralPlugin):
 	@objc.python_method
 	def settings(self):
 		self.name = Glyphs.localize({'en': u'Vertical Rotated Preview Window'})
@@ -351,7 +351,7 @@ class VerticalRotatedPreviewWindow(GeneralPlugin):
 			self.windowHeight = 240
 			windowSize = (self.windowWidth, self.windowHeight)
 			windowTitle = "Vertical Rotated Preview"
-			autosaveName = "com.Tosche.VerticalRotatedPreviewWindow.window"
+			autosaveName = "com.Tosche.VerticalRotatedPreview.window"
 			keysPressed = NSEvent.modifierFlags()
 			optionKeyPressed = keysPressed & NSEventModifierFlagOption == NSEventModifierFlagOption
 			if optionKeyPressed:
@@ -388,11 +388,11 @@ class VerticalRotatedPreviewWindow(GeneralPlugin):
 	@objc.python_method
 	def loadPrefs(self):
 		try:
-			if Glyphs.defaults["com.Tosche.VerticalRotatedPreviewWindow.lineDir"] is None:
-				Glyphs.defaults["com.Tosche.VerticalRotatedPreviewWindow.lineDir"] = 0
-				Glyphs.defaults["com.Tosche.VerticalRotatedPreviewWindow.scale"] = 0.5
-			self.w.lineDirRadio.set(Glyphs.defaults["com.Tosche.VerticalRotatedPreviewWindow.lineDir"])
-			self.w.scaleSlider.set(Glyphs.defaults["com.Tosche.VerticalRotatedPreviewWindow.scale"])
+			if Glyphs.defaults["com.Tosche.VerticalRotatedPreview.lineDir"] is None:
+				Glyphs.defaults["com.Tosche.VerticalRotatedPreview.lineDir"] = 0
+				Glyphs.defaults["com.Tosche.VerticalRotatedPreview.scale"] = 0.5
+			self.w.lineDirRadio.set(Glyphs.defaults["com.Tosche.VerticalRotatedPreview.lineDir"])
+			self.w.scaleSlider.set(Glyphs.defaults["com.Tosche.VerticalRotatedPreview.scale"])
 		except:
 			# print(traceback.format_exc())
 			pass
@@ -400,8 +400,8 @@ class VerticalRotatedPreviewWindow(GeneralPlugin):
 
 	def uiChanged_(self, sender):
 		try:
-			Glyphs.defaults["com.Tosche.VerticalRotatedPreviewWindow.lineDir"] = self.w.lineDirRadio.get()
-			Glyphs.defaults["com.Tosche.VerticalRotatedPreviewWindow.scale"] = self.w.scaleSlider.get()
+			Glyphs.defaults["com.Tosche.VerticalRotatedPreview.lineDir"] = self.w.lineDirRadio.get()
+			Glyphs.defaults["com.Tosche.VerticalRotatedPreview.scale"] = self.w.scaleSlider.get()
 
 			self.w.preview.redraw()
 		except:

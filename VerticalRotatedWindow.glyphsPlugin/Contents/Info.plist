@@ -7,11 +7,11 @@
 	<key>CFBundleExecutable</key>
 	<string>plugin</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.Tosche.VerticalRotatedPreviewWindow</string>
+	<string>com.Tosche.VerticalRotatedPreview</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>VerticalRotatedPreviewWindow</string>
+	<string>VerticalRotatedPreview</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.3</string>
 	<key>CFBundleVersion</key>
@@ -19,6 +19,10 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright, Toshi Omagari, 2026</string>
 	<key>NSPrincipalClass</key>
-	<string>VerticalRotatedPreviewWindow</string>
+	<string>VerticalRotatedPreview</string>
+	<key>UpdateFeedURL</key>
+	<string>https://raw.githubusercontent.com/Tosche/Vertical-Rotated-Preview/master/VerticalRotatedPreview.glyphsFilter/Contents/Info.plist</string>
+	<key>productPageURL</key>
+	<string>https://github.com/Tosche/Vertical-Rotated-Preview</string>
 </dict>
 </plist>
