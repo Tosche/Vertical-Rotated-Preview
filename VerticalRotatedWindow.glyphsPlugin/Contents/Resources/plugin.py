@@ -37,7 +37,7 @@ def is_glyphs_dark_ui():
     return match == NSAppearanceNameDarkAqua
 
 
-class VerticalRotatedPreview(NSView):
+class VerticalRotatedPreviewView(NSView):
 
 	@objc.python_method
 	def getLineBrokenLayers(self, font) -> list:
@@ -307,7 +307,7 @@ class TheView(vanilla.VanillaBaseObject):
 
 		# Create the preview as the scroll view's document view
 		initialFrame = ((0, 0), (400, 400))
-		previewView = VerticalRotatedPreview.alloc().initWithFrame_(initialFrame)
+		previewView = VerticalRotatedPreviewView.alloc().initWithFrame_(initialFrame)
 		previewView.wrapper = self
 		self._windowController = None
 		self._previewView = previewView
