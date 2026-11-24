@@ -2,7 +2,11 @@
 
 
 from __future__ import print_function, unicode_literals
-from GlyphsApp import Glyphs, UPDATEINTERFACE, DOCUMENTACTIVATED, TABDIDOPEN, TABWILLCLOSE, WINDOW_MENU, LTR, GSControlLayer
+from GlyphsApp import Glyphs, UPDATEINTERFACE, DOCUMENTACTIVATED, TABDIDOPEN, TABWILLCLOSE, WINDOW_MENU, GSControlLayer
+try: # Try Glyphs 4 import first
+	from GlyphsApp import GSLTR
+except: # fallback, Glyphs 3
+	from GlyphsApp import LTR
 from GlyphsApp.plugins import GeneralPlugin
 import vanilla
 from AppKit import (
@@ -229,12 +233,13 @@ class VerticalRotatedPreviewView(NSView):
 			lineHeight = font.selectedFontMaster.ascender - font.selectedFontMaster.descender
 			# linebreak_direction = Glyphs.defaults["com.Tosche.VerticalRotatedPreview.lineDir"] or 0
 			for i, l in enumerate(layers):
-				# print(i, l)
+				# at a line break
 				if l == 'break' or type(l) == GSControlLayer:
 					advance = 0
 					self.addLinePath(fullPath, linePath, lineOffsetY)
 					lineOffsetY += lineHeight
 					linePath = NSBezierPath.alloc().init()
+				# regular layer
 				else:
 					kernValue = 0
 					if layers[i-1] != 'break' and type(layers[i-1]) != GSControlLayer and i > 0:
